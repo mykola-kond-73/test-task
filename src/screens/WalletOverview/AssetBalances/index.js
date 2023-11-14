@@ -333,7 +333,7 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                     <div className={styles.col}>
                                         <div
                                             className={`sorting ${checkClassName('total_balance')}`}
-                                            onClick={() => handleSort('total_balance')}
+                                            onClick={() => handleSort('total_balance_usdt_num')}
                                         >
                                             {t(`${page}.sorting.totalBalance`)}
                                         </div>
@@ -341,7 +341,8 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                     <div className={styles.col}>
                                         <div
                                             className={`sorting ${checkClassName('total_available')}`}
-                                            onClick={() => handleSort('total_available')}
+                                            onClick={() => handleSort('total_available_usdt_num')}
+
                                         >
                                             {t(`${page}.sorting.totalAvailable`)}
                                         </div>
