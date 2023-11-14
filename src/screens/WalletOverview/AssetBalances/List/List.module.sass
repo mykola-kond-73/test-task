@@ -1,0 +1,248 @@
+@import ../../../../assets/styles/helpers
+
+.table
+    display: table
+    width: 100%
+    +t
+        display: block
+
+.trade
+    +t
+        overflow-x: scroll
+
+.row
+    display: table-row
+    color: $n2
+    cursor: pointer
+    +t
+        min-width: fit-content
+        position: relative
+        // display: flex
+        gap: 30px
+
+    &:first-child
+        // +t
+            // display: none
+
+        .col
+            padding: 0 16px 32px
+            +t
+                padding: 5px
+            border-bottom: 1px solid $n6
+            +caption-bold-2
+            color: $n4
+            +dark
+                border-color: $n2
+
+            svg
+                margin-left: 4px
+                fill: $n4
+
+    &:not(:first-child)
+        transition: background .2s
+
+        .col
+            vertical-align: middle
+            font-weight: 600
+
+            &:first-child
+                border-radius: 12px 0 0 12px
+                color: $n4
+                +t
+                    border-radius: 0
+
+            &:last-child
+                border-radius: 0 12px 12px 0
+                +t
+                    border-radius: 0
+
+        &:hover
+            background: $n7
+            +dark
+                background: $n2
+
+            .button
+                display: inline-flex
+
+    &:not(:last-child)
+        +t
+            margin-bottom: 24px
+            //padding-bottom: 20px
+            padding: 10px
+            border-bottom: 1px solid $n6
+            +dark
+                border-color: $n3
+
+.col
+    display: table-cell
+    padding: 16px
+    text-align: right
+    font-weight: 600
+    +t
+        align-items: center
+        margin-bottom: 4px
+        padding: 0
+    +dark
+        color: $n8
+
+    &:first-child,
+    &:nth-child(2)
+        text-align: left
+
+    &:nth-child(2)
+        +t
+            margin-bottom: 16px
+
+    &:nth-last-child(2)
+        +sa
+            display: none
+
+    &:nth-last-child(3)
+        +sa
+            display: none
+
+    &:first-child
+        font-size: 12px
+
+    &:last-child
+        +t
+            margin-bottom: 0
+
++t
+    .hide_on_phone
+        display: none
+
+.chartContainer
+    display: inline-block
+
+.line
+    display: inline-flex
+    align-items: center
+    +caption-bold-2
+
+.favorite
+    position: relative
+    top: -1px
+    margin-right: 10px
+
+    &.selected > svg
+        fill: $s3
+
+.item
+    display: flex
+    align-items: center
+    background-color: rgb(71, 77, 87)
+    +m
+        flex-direction: column
+
+    p
+        padding: .5em
+        color: #fff
+        opacity: 1
+        +m
+            display: none
+
+.icon
+    flex-shrink: 0
+    width: 32px
+    margin-right: 12px
+
+    img
+        max-width: 100%
+
+.subtitle
+    margin-right: 4px
+
+.currency
+    font-weight: 400
+    color: $n4
+
+.positive
+    color: $p4
+
+.negative
+    color: $p3
+
+.button
+    //display: none
+    display: inline-flex
+    width: 96px
+    +d
+        display: inline-flex
+    +t
+        display: none
+        position: absolute
+        //top: -6px
+        top: 5px
+        //right: 0
+        right: 5px
+
+.chart
+    width: 124px
+    height: 40px
+    filter: hue-rotate(300deg) saturate(210%) brightness(0.7) contrast(170%)
+
+.upChart
+    filter: hue-rotate(85deg) saturate(80%) brightness(0.85)
+
+.display
+    display: none
+    +t
+        display: block
+
+.textEnd
+    text-align: end !important
+
+.flex
+    display: flex
+    align-items: center
+
+.currTitleContainer
+    max-width: 10%
+    display: contents
+    +t
+        display: block
+
+.value
+    display: block
+    color: #9396B9
+    font-size: 0.7em
+    line-height: 1
+
+.currency
+    display: flex
+    align-items: flex-end
+    justify-content: flex-end
+    padding: 10px 0
+    gap: 10px
+    +t
+        gap: 1px
+
+.main
+    background-color: #2C93FB
+
+    p
+        font-weight: bold
+
+.currency .item
+    -webkit-transition-duration: .28s
+    transition-duration: .28s
+    -webkit-transition-property: opacity, -webkit-box-shadow, -webkit-transform
+    transition-property: opacity, -webkit-box-shadow, -webkit-transform
+    transition-property: box-shadow, transform, opacity
+    transition-property: box-shadow, transform, opacity, -webkit-box-shadow, -webkit-transform
+    -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1)
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+    -webkit-user-select: none
+    border-radius: 10px
+    padding: 5px
+    height: 30px
+    +m
+        height: 100%
+    +t
+        transform: scale(0.9)
+
+.link
+    text-decoration: underline
+    font-weight: bold
+    color: $n8

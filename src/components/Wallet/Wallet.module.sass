@@ -1,0 +1,286 @@
+@import ../../assets/styles/helpers
+
+.panel
+    margin: 10px
+    padding: 32px
+    position: relative
+    border-radius: 24px
+    box-shadow: 0 64px 64px -48px rgba(15, 15, 15, 0.1)
+    background: $n8
+    border: 1px solid $n7
+    +m
+        margin: 0 -6px 12px
+    +dark
+        background: #18191D
+        border-color: $n3
+    .info
+        margin-bottom: 4px
+        font-weight: 600
+
+    .currency
+        display: flex
+        align-items: center
+
+    .number
+        +body-bold-1
+
+    .category
+        margin-left: 8px
+
+    .price
+        +body-2
+        color: $n4
+
+.wallet
+    display: flex
+    padding: 4px
+    background: $n7
+    +t
+        display: block
+        padding: 32px 16px 16px
+    +dark
+        background: $n1
+
+.sidebar
+    display: flex
+    flex-direction: column
+    flex: 0 0 256px
+    width: 256px
+    min-height: 100%
+    padding-top: 24px
+    background: $n8
+    border-radius: 4px
+    +d
+        flex: 0 0 180px
+        width: 180px
+    +t
+        width: 100%
+        height: auto
+        margin-bottom: 16px
+        padding-top: 0
+        background: none
+    +dark
+        background: #18191D
+        +t
+            background: none
+
+.wrapper
+    flex-grow: 1
+    // height: calc(100vh - 88px)
+    height: max-content
+    padding-left: 4px
+    overflow-y: hidden
+    +t
+        height: auto
+        overflow: inherit
+        padding-left: 0
+
+.group
+    margin-bottom: auto
+    +t
+        position: relative
+        z-index: 5
+        margin: 0
+        &.active
+            .top
+                box-shadow: inset 0 0 0 2px $p1
+
+                &:after
+                    transform: translateY(-50%) rotate(180deg)
+
+            .menu
+                visibility: visible
+                opacity: 1
+
+
+//.top
+//    display: none
+//    +t
+//        position: relative
+//        display: flex
+//        align-items: center
+//        height: 48px
+//        padding: 0 64px 0 0
+//        border-radius: 12px
+//        background: $n8
+//        box-shadow: inset 0 0 0 2px $n6
+//        font-weight: 600
+//        transition: all .2s
+//        +dark
+//            background: #18191D
+//            box-shadow: inset 0 0 0 2px $n3
+//        &:after
+//            content: ""
+//            position: absolute
+//            top: 50%
+//            right: 16px
+//            width: 24px
+//            height: 24px
+//            transform: translateY(-50%)
+//            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M16.207 9.793a1 1 0 0 0-1.414 0L12 12.586 9.207 9.793a1 1 0 0 0-1.414 1.414l3.5 3.5a1 1 0 0 0 1.414 0l3.5-3.5a1 1 0 0 0 0-1.414z' fill='%23777e91'/%3E%3C/svg%3E") no-repeat 50% 50% / 100% auto
+//            transition: transform .2s
+
+.bg
+    flex-shrink: 0
+    width: 12px
+    height: 12px
+    margin: 0 18px 0 26px
+    border-radius: 4px
+
+.menu
+    display: flex
+    flex-direction: column
+    +t
+        position: absolute
+        top: calc(100% + 4px)
+        left: 0
+        right: 0
+        box-shadow: 0 16px 64px -32px rgba(31, 47, 70, 0.15)
+        border-radius: 12px
+        background: $n8
+        overflow: hidden
+        visibility: hidden
+        opacity: 0
+        transition: all .2s
+        +dark
+            background: $n3
+
+    .item
+        display: flex
+        align-items: center
+        height: 48px
+        +button-2
+        color: $n4
+        transition: color .2s
+
+        svg
+            margin: 0 14px 0 22px
+            fill: $n4
+            transition: fill .2s
+
+        &:hover,
+        &.active
+            color: $n2
+            +t
+                background: $n6
+
+            svg
+                fill: $n2
+
+            +dark
+                color: $n8
+                +t
+                    background: $n2
+                svg
+                    fill: $n8
+
+        &:not(:last-child).separator
+            position: relative
+            margin-bottom: 41px
+            +t
+                margin-bottom: 0
+
+            &:after
+                content: ""
+                position: absolute
+                top: calc(100% + 20px)
+                left: 0
+                right: 0
+                height: 1px
+                background: $n6
+                +dark
+                    background: $n2
+                +t
+                    display: none
+
+        &.separator ~ &
+            +t
+                display: none
+
+.menuTop
+    display: none
+    +t
+        display: flex
+        flex-direction: row
+        +a
+            justify-content: space-between
+        margin: 10px
+        padding: 5px
+        border-radius: 24px
+        background: $n8
+        border: 1px solid $n7
+        +m
+            margin: 0 -6px 12px
+        +dark
+            background: #18191D
+            border-color: $n3
+
+        .item
+            padding: 5px 10px
+            +s
+                padding: 5px 5px
+
+            border-radius: 14px
+            background: none
+            +button-2
+            color: $n4
+            transition: all .2s
+
+            .title
+                display: flex
+                align-items: center
+
+            &:hover
+                color: $n3
+                +dark
+                    color: $n6
+
+            &.active
+                background: $n6
+                color: $n2
+                +dark
+                    background: $n3
+                    color: $n8
+
+            &:not(:last-child)
+                margin-right: 16px
+                +s
+                    margin-right: 0
+
+            span.balance
+                display: block
+                color: $n5
+                font-weight: normal
+                padding: 3px 0 0 20px
+                +s
+                    padding-left: 15px
+
+        .bg
+            margin: 0 5px
+            +s
+                margin: 0 3px 0 1px
+
+.btns
+    margin-top: 24px
+    padding: 16px
+    +t
+        display: flex
+        margin: 0 -6px
+        padding: 0
+        order: -1
+
+.button
+    width: 100%
+    +t
+        flex: 1
+        margin: 0 6px
+
+    &:last-child
+        display: none
+        +t
+            display: flex
+
+    &:not(:last-child)
+        margin-bottom: 12px
+        +t
+            margin-bottom: 0

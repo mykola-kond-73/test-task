@@ -1,0 +1,66 @@
+@import ../../assets/styles/helpers
+
+.card
+    display: block
+    color: $n2
+    transition: color .2s
+    +dark
+        color: $n8
+
+    &:hover
+        color: $p1
+
+        .preview
+            img
+                transform: scale(1.1)
+
+.preview
+    position: relative
+    overflow: hidden
+    border-radius: 16px
+
+    img
+        width: 100%
+        transition: transform 1s
+
+    .category
+        position: absolute
+        top: 8px
+        left: 8px
+        z-index: 2
+
+.body
+    display: flex
+    padding: 20px 0
+
+.avatar
+    position: relative
+    top: 2px
+    flex-shrink: 0
+    width: 40px
+    height: 40px
+    border-radius: 50%
+    overflow: hidden
+    background: $s2
+    +dark
+        background: $n3
+
+    img
+        width: 100%
+        height: 100%
+        object-fit: cover
+
+.details
+    flex-grow: 1
+    padding: 0 16px
+
+.title
+    margin-bottom: 2px
+    +body-bold-2
+
+.author
+    +caption-2
+    color: $n4
+
+.status
+    align-self: flex-start

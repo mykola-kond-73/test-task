@@ -1,0 +1,206 @@
+@import ../../../assets/styles/helpers
+
+.table
+    display: table
+    width: 100%
+
+.trade
+    padding: 20px 32px 8px
+    +t
+        padding: 0
+
+.row
+    display: table-row
+    color: $n2
+    cursor: pointer
+
+    &:first-child
+        .col
+            +t
+                padding: 5px
+            border-bottom: 1px solid $n6
+            +caption-bold-2
+            color: $n4
+            +dark
+                border-color: $n2
+
+            svg
+                margin-left: 4px
+                fill: $n4
+
+    &:not(:first-child)
+        transition: background .2s
+
+        .col
+            vertical-align: middle
+            font-weight: 600
+
+            &:first-child
+                border-radius: 12px 0 0 12px
+                color: $n4
+                +t
+                    border-radius: 0
+
+            &:last-child
+                border-radius: 0 12px 12px 0
+                +t
+                    border-radius: 0
+
+        &:hover
+            background: $n7
+            +dark
+                background: $n2
+
+            .button
+                display: inline-flex
+
+    &:not(:last-child)
+        +t
+            margin-bottom: 24px
+            //padding-bottom: 20px
+            padding: 10px
+            border-bottom: 1px solid $n6
+            +dark
+                border-color: $n3
+
+.col
+    display: table-cell
+    padding: 16px
+    text-align: right
+    font-weight: 600
+    +dark
+        color: $n8
+
+    &:first-child,
+    &:nth-child(2)
+        text-align: left
+
+    &:nth-child(2)
+        +t
+            margin-bottom: 16px
+
+    &:nth-last-child(2)
+        +sa
+            display: none
+
+    &:nth-last-child(3)
+        +sa
+            display: none
+
+    &:first-child
+        font-size: 12px
+
+    &:last-child
+        +t
+            margin-bottom: 0
+
+.wrap
+    padding-bottom: 4px
+
+.flex
+    display: flex
+    flex-wrap: wrap
+    align-content: center
+    justify-content: space-around
+    gap: 16px
+    width: 100%
+    //width: 100vw
+    overflow: scroll
+
+
+.currency
+    display: flex
+    align-items: center
+    
+.currency .item
+    opacity: 0.6
+    margin: 5px
+    -webkit-transition-duration: .28s
+    transition-duration: .28s
+    -webkit-transition-property: opacity, -webkit-box-shadow, -webkit-transform
+    transition-property: opacity, -webkit-box-shadow, -webkit-transform
+    transition-property: box-shadow, transform, opacity
+    transition-property: box-shadow, transform, opacity, -webkit-box-shadow, -webkit-transform
+    -webkit-transition-timing-function: cubic-bezier(.4, 0, .2, 1)
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1)
+    -webkit-user-select: none
+    background: #f5f5f5
+    border-radius: 10px
+    padding: 5px
+    height: 30px
+
+    &:hover
+        opacity: 1
+
+.link
+    position: relative
+    bottom: -17px
+    a
+        transition: all .28s
+        color: $n6
+        font-size: 1.1rem
+        &:visited
+            color: $n6
+        &:hover
+            color: $n8
+
+.linkToast
+    text-decoration: underline
+    font-weight: bold
+    color: $n8
+
+.icon
+    flex-shrink: 0
+    width: 42px
+    margin-bottom: 20px
+    margin-right: 20px
+    +m
+        margin-right: 12px
+    img
+        width: 100%
+
+.not_found
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 220px
+
+.info
+    font-weight: 900
+    font-size: 25px
+
+.text
+    color: $n6
+    font-size: 17px
+    opacity: 0.8
+
+.card
+    border-radius: 20px
+    margin: 10px
+    padding: 10px
+    width: 330px !important
+    +m
+        margin: 5px
+
+.history
+    min-width: 828px
+    +t
+        min-width: 0
+
+.head
+    display: flex
+    justify-content: space-between
+    padding: 20px 32px 8px
+    +caption-2
+    font-weight: 600
+    color: $n4
+    +m
+        padding: 20px 0 8px
+
+.headrow
+    display: flex
+    justify-content: space-between
+
+    .checkbox
+        padding-left: 50px
+        padding-bottom: 0
