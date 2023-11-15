@@ -17,7 +17,7 @@ const page = "wallet.assetBalances";
 
 const SORTING_FUNCTIONS = {
     'ascending': (a, b, prop) => {
-        if (typeof a[prop] === 'string') {
+        if (prop === 'name') {
             if (a[prop] > b[prop]) {
                 return 1;
             }
@@ -26,11 +26,11 @@ const SORTING_FUNCTIONS = {
             }
             return 0;
         } else {
-            return a[prop] - b[prop];
+            return Number(a[prop]) - Number(b[prop]);
         }
     },
     'descending': (a, b, prop) => {
-        if (typeof a[prop] === 'string') {
+        if (prop === 'name') {
             if (a[prop] < b[prop]) {
                 return 1;
             }
@@ -39,7 +39,7 @@ const SORTING_FUNCTIONS = {
             }
             return 0;
         } else {
-            return b[prop] - a[prop];
+            return Number(b[prop]) - Number(a[prop]);             
         }
     },
 }
@@ -130,6 +130,9 @@ const AssetBalances = ({ balanceData, walletType }) => {
     const [visibleHistory, setVisibleHistory] = useState(false);
     const [hideSmallBalance, setHideSmallBalance] = useState(smallBalances.hide);
     const [sorting, setSorting] = useState({ prop: 'total_available_usdt_num', descending: true });
+    const [sortingByNameHelper, setSortingByNameHelper]=useState(true)
+    const [sortingByBalance,setSortingByBalance]=useState(false)
+    const [isSortByAlphabetically,setIsSortByAlphabetically]=useState(false)
     const [sortedBalanceData, setSortedBalanceData] = useState({});
 
     /**
@@ -200,11 +203,16 @@ const AssetBalances = ({ balanceData, walletType }) => {
     }
 
     const handleSort = (prop) => {
-        if (sorting.prop === prop) {
-            setSorting(prev => ({ prop, descending: !prev.descending }))
-        } else {
-            setSorting({ prop, descending: true })
+        if(prop==="name"){
+            setSorting({ prop, descending: sortingByNameHelper })
+            setSortingByNameHelper(!sortingByNameHelper)
+            setSortingByBalance(true)
         }
+        else{
+            setSorting({ prop, descending: sortingByBalance })
+            setSortingByBalance(!sortingByBalance)
+            setSortingByNameHelper(true)
+        } 
     }
 
     const checkClassName = (prop) => {
@@ -324,7 +332,10 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                     <div className={styles.col}>
                                         <div
                                             className={`sorting ${checkClassName('name')} `}
-                                            onClick={() => handleSort('name')}
+                                            onClick={() =>{ 
+                                                setIsSortByAlphabetically(true)            
+                                                handleSort('name')
+                                            }}
                                         >
                                             {t(`${page}.sorting.coin`)}
                                         </div>
@@ -333,7 +344,10 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                     <div className={styles.col}>
                                         <div
                                             className={`sorting ${checkClassName('total_balance')}`}
-                                            onClick={() => handleSort('total_balance_usdt_num')}
+                                            onClick={() =>{
+                                                setIsSortByAlphabetically(false)            
+                                                handleSort('total_balance_usdt_num')
+                                            }}
                                         >
                                             {t(`${page}.sorting.totalBalance`)}
                                         </div>
@@ -341,7 +355,10 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                     <div className={styles.col}>
                                         <div
                                             className={`sorting ${checkClassName('total_available')}`}
-                                            onClick={() => handleSort('total_available_usdt_num')}
+                                            onClick={() =>{
+                                                setIsSortByAlphabetically(false)            
+                                                handleSort('total_available_usdt_num')
+                                            }}
 
                                         >
                                             {t(`${page}.sorting.totalAvailable`)}
@@ -350,7 +367,11 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                     <div className={styles.col}>
                                         <div
                                             className={`sorting ${checkClassName('frozen')}`}
-                                            onClick={() => handleSort('frozen')}
+                                            // onClick={() => handleSort('frozen')}
+                                            onClick={() =>{
+                                                setIsSortByAlphabetically(false)            
+                                                handleSort('frozen_usdt')
+                                            }}
                                         >
                                             {t(`${page}.sorting.frozen`)}
                                         </div>
@@ -368,7 +389,6 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                     .sort((a, b) => {
                                         const prev = (sorting.prop === 'name') ? { ...balanceData[b], name: b } : balanceData[a];
                                         const next = (sorting.prop === 'name') ? { ...balanceData[a], name: a } : balanceData[b];
-
                                         return (
                                             (sorting.descending) ?
                                                 SORTING_FUNCTIONS.descending(prev, next, sorting.prop) :
@@ -380,7 +400,7 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                         const prev = { ...balanceData[b], name: b }
                                         const next = { ...balanceData[a], name: a }
 
-                                        if(prev['total_balance_usdt_num']===0 && next['total_balance_usdt_num']===0){
+                                        if(!isSortByAlphabetically && Number(prev[sorting.prop])===0 && Number(next[sorting.prop])===0){
                                             if (prev['name'] < next['name']) {
                                                 return 1;
                                             }
@@ -391,7 +411,6 @@ const AssetBalances = ({ balanceData, walletType }) => {
                                         }
                                     })
 //=====================SOLUTION=====================================================================================================================================
-
                                     .map((x, index) => {
                                         return (
                                             <List
